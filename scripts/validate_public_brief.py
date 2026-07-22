@@ -28,12 +28,15 @@ ACTION_FIELDS = {
     "confidence",
     "reason",
     "evidence",
+    "probability_tree",
 }
-EVIDENCE_FIELDS = {"source_url", "source_title", "source_content", "probability_impact"}
+EVIDENCE_FIELDS = {"id", "source_url", "source_title", "source_content", "probability_impact"}
 INDEX_FIELDS = {"schema_version", "briefs"}
 INDEX_ITEM_FIELDS = {"brief_id", "generated_at", "title", "file"}
 BRIEF_ID_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]{0,79}$")
+TREE_ID_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]{0,99}$")
 PUBLIC_TITLE = "预测市场研究信号"
+PROBABILITY_TOLERANCE = 1e-6
 WALLET_RE = re.compile(r"\b0x[a-fA-F0-9]{40}\b")
 EMAIL_RE = re.compile(r"\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b", re.IGNORECASE)
 LOCAL_PATH_RE = re.compile(r"(?:/Users/|/home/|[A-Za-z]:\\Users\\)")
@@ -115,11 +118,222 @@ def scan_sensitive_strings(value: Any, path: str = "brief") -> None:
 def validate_evidence(value: Any, path: str) -> dict[str, Any]:
     item = require_object(value, path)
     require_exact_fields(item, EVIDENCE_FIELDS, path)
+    identifier = require_string(item["id"], f"{path}.id", maximum=100)
+    if not TREE_ID_RE.fullmatch(identifier):
+        raise PublicBriefError(f"{path}.id contains unsupported characters")
     require_https_url(item["source_url"], f"{path}.source_url")
     require_string(item["source_title"], f"{path}.source_title", maximum=240)
     require_string(item["source_content"], f"{path}.source_content", maximum=1200)
     require_string(item["probability_impact"], f"{path}.probability_impact", maximum=500)
     return item
+
+
+def require_unique_id(value: Any, path: str, identifiers: set[str]) -> str:
+    identifier = require_string(value, path, maximum=100)
+    if not TREE_ID_RE.fullmatch(identifier):
+        raise PublicBriefError(f"{path} contains unsupported characters")
+    if identifier in identifiers:
+        raise PublicBriefError(f"{path} duplicates ID {identifier}")
+    identifiers.add(identifier)
+    return identifier
+
+
+def validate_evidence_refs(
+    value: Any,
+    path: str,
+    evidence_ids: set[str],
+    referenced_evidence: set[str],
+) -> None:
+    if not isinstance(value, list):
+        raise PublicBriefError(f"{path} must be an array")
+    seen: set[str] = set()
+    for index, raw in enumerate(value):
+        reference = require_string(raw, f"{path}[{index}]", maximum=100)
+        if reference in seen:
+            raise PublicBriefError(f"{path} must not contain duplicates")
+        seen.add(reference)
+        if reference not in evidence_ids:
+            raise PublicBriefError(f"{path}[{index}] refers to unknown evidence {reference}")
+        referenced_evidence.add(reference)
+
+
+def validate_probability_node(
+    value: Any,
+    path: str,
+    evidence_ids: set[str],
+    referenced_evidence: set[str],
+    identifiers: set[str],
+    depth: int = 1,
+) -> float:
+    if depth > 64:
+        raise PublicBriefError(f"{path} exceeds maximum depth 64")
+    node = require_object(value, path)
+    node_type = node.get("type")
+    common = {"id", "type", "label", "description", "probability", "evidence_refs"}
+    expected = {
+        "estimate": common,
+        "partition": common | {"branches"},
+        "bayes_update": common | {"prior", "updates"},
+        "complement": common | {"child"},
+    }.get(node_type)
+    if expected is None:
+        raise PublicBriefError(f"{path}.type is unsupported: {node_type}")
+    require_exact_fields(node, expected, path)
+    require_unique_id(node["id"], f"{path}.id", identifiers)
+    require_string(node["label"], f"{path}.label", maximum=160)
+    require_string(node["description"], f"{path}.description", maximum=600)
+    declared = require_number(node["probability"], f"{path}.probability", 0.0, 1.0)
+    validate_evidence_refs(
+        node["evidence_refs"],
+        f"{path}.evidence_refs",
+        evidence_ids,
+        referenced_evidence,
+    )
+
+    if node_type == "estimate":
+        computed = declared
+    elif node_type == "partition":
+        branches = node["branches"]
+        if not isinstance(branches, list) or len(branches) < 2:
+            raise PublicBriefError(f"{path}.branches must contain at least two branches")
+        total_weight = 0.0
+        computed = 0.0
+        for index, raw in enumerate(branches):
+            branch_path = f"{path}.branches[{index}]"
+            branch = require_object(raw, branch_path)
+            require_exact_fields(
+                branch,
+                {"id", "label", "weight", "evidence_refs", "child"},
+                branch_path,
+            )
+            require_unique_id(branch["id"], f"{branch_path}.id", identifiers)
+            require_string(branch["label"], f"{branch_path}.label", maximum=160)
+            weight = require_number(branch["weight"], f"{branch_path}.weight", 0.0, 1.0)
+            validate_evidence_refs(
+                branch["evidence_refs"],
+                f"{branch_path}.evidence_refs",
+                evidence_ids,
+                referenced_evidence,
+            )
+            child_probability = validate_probability_node(
+                branch["child"],
+                f"{branch_path}.child",
+                evidence_ids,
+                referenced_evidence,
+                identifiers,
+                depth + 1,
+            )
+            total_weight += weight
+            computed += weight * child_probability
+        if not math.isclose(total_weight, 1.0, rel_tol=0.0, abs_tol=PROBABILITY_TOLERANCE):
+            raise PublicBriefError(f"{path}.branches weights must sum to 1")
+    elif node_type == "complement":
+        child_probability = validate_probability_node(
+            node["child"],
+            f"{path}.child",
+            evidence_ids,
+            referenced_evidence,
+            identifiers,
+            depth + 1,
+        )
+        computed = 1.0 - child_probability
+    else:
+        computed = validate_probability_node(
+            node["prior"],
+            f"{path}.prior",
+            evidence_ids,
+            referenced_evidence,
+            identifiers,
+            depth + 1,
+        )
+        updates = node["updates"]
+        if not isinstance(updates, list) or not updates:
+            raise PublicBriefError(f"{path}.updates must contain at least one item")
+        for index, raw in enumerate(updates):
+            update_path = f"{path}.updates[{index}]"
+            update = require_object(raw, update_path)
+            require_exact_fields(
+                update,
+                {
+                    "id",
+                    "label",
+                    "likelihood_if_true",
+                    "likelihood_if_false",
+                    "posterior_probability",
+                    "evidence_refs",
+                },
+                update_path,
+            )
+            require_unique_id(update["id"], f"{update_path}.id", identifiers)
+            require_string(update["label"], f"{update_path}.label", maximum=160)
+            likelihood_true = require_number(
+                update["likelihood_if_true"], f"{update_path}.likelihood_if_true", 0.0, 1.0
+            )
+            likelihood_false = require_number(
+                update["likelihood_if_false"], f"{update_path}.likelihood_if_false", 0.0, 1.0
+            )
+            denominator = computed * likelihood_true + (1.0 - computed) * likelihood_false
+            if denominator == 0.0:
+                raise PublicBriefError(f"{update_path} has zero evidence probability")
+            computed = computed * likelihood_true / denominator
+            posterior = require_number(
+                update["posterior_probability"],
+                f"{update_path}.posterior_probability",
+                0.0,
+                1.0,
+            )
+            if not math.isclose(
+                posterior,
+                computed,
+                rel_tol=0.0,
+                abs_tol=PROBABILITY_TOLERANCE,
+            ):
+                raise PublicBriefError(
+                    f"{update_path}.posterior_probability does not match Bayes calculation"
+                )
+            validate_evidence_refs(
+                update["evidence_refs"],
+                f"{update_path}.evidence_refs",
+                evidence_ids,
+                referenced_evidence,
+            )
+
+    if not math.isclose(
+        declared,
+        computed,
+        rel_tol=0.0,
+        abs_tol=PROBABILITY_TOLERANCE,
+    ):
+        raise PublicBriefError(f"{path}.probability does not match its child calculation")
+    return declared
+
+
+def validate_probability_tree(
+    value: Any,
+    path: str,
+    evidence_ids: set[str],
+    fair_price: float,
+) -> None:
+    tree = require_object(value, path)
+    require_exact_fields(tree, {"root"}, path)
+    referenced_evidence: set[str] = set()
+    root_probability = validate_probability_node(
+        tree["root"],
+        f"{path}.root",
+        evidence_ids,
+        referenced_evidence,
+        set(),
+    )
+    if not math.isclose(
+        root_probability,
+        fair_price,
+        rel_tol=0.0,
+        abs_tol=PROBABILITY_TOLERANCE,
+    ):
+        raise PublicBriefError(f"{path}.root.probability must equal fair_price")
+    unreferenced = sorted(evidence_ids - referenced_evidence)
+    if unreferenced:
+        raise PublicBriefError(f"{path} does not reference evidence: {', '.join(unreferenced)}")
 
 
 def validate_action(value: Any, path: str) -> dict[str, Any]:
@@ -149,16 +363,26 @@ def validate_action(value: Any, path: str) -> dict[str, Any]:
     evidence = action["evidence"]
     if not isinstance(evidence, list) or not evidence:
         raise PublicBriefError(f"{path}.evidence must contain at least one item")
+    evidence_ids: set[str] = set()
     for index, item in enumerate(evidence):
-        validate_evidence(item, f"{path}.evidence[{index}]")
+        validated = validate_evidence(item, f"{path}.evidence[{index}]")
+        if validated["id"] in evidence_ids:
+            raise PublicBriefError(f"{path}.evidence contains duplicate IDs")
+        evidence_ids.add(validated["id"])
+    validate_probability_tree(
+        action["probability_tree"],
+        f"{path}.probability_tree",
+        evidence_ids,
+        fair,
+    )
     return action
 
 
 def validate_brief(value: Any) -> dict[str, Any]:
     brief = require_object(value, "brief")
     require_exact_fields(brief, ROOT_FIELDS, "brief")
-    if brief["schema_version"] != "1.0":
-        raise PublicBriefError("brief.schema_version must equal '1.0'")
+    if brief["schema_version"] != "1.1":
+        raise PublicBriefError("brief.schema_version must equal '1.1'")
     brief_id = require_string(brief["brief_id"], "brief.brief_id", maximum=80)
     if not BRIEF_ID_RE.fullmatch(brief_id):
         raise PublicBriefError("brief.brief_id contains unsupported characters")

@@ -39,8 +39,22 @@ python3 scripts/validate_public_brief.py site/data
 - `fair_price`、`current_price` 与 `price_gap`
 - `confidence` 和 `reason`
 - `evidence`：来源 URL、标题、核心内容摘要及概率影响
+- `probability_tree`：最终采用的递归贝叶斯/全概率树，以及证据与节点的对应关系
 
 `price_gap` 必须严格等于 `fair_price - current_price`。价格均表示当前 `outcome` 的份额价格，范围为 0–1。
+
+## 贝叶斯树格式
+
+公共协议 `1.1` 直接保存可重新计算的递归树，不保存具体页面布局。每个节点都包含稳定 ID、类型、标题、说明、该节点的最终概率以及 `evidence_refs`。
+
+支持四类节点：
+
+- `estimate`：证据直接支持的点估计。
+- `partition`：互斥且完备的情景分支；所有 `weight` 之和必须为 1。
+- `bayes_update`：从一个完整的 `prior` 子树开始，按顺序应用似然并保存每一步后验概率。
+- `complement`：一个子节点概率的补集。
+
+树使用嵌套 `child`、`prior` 和 `branches` 表达父子关系；情景分支通过 `evidence_refs` 说明权重依据。每条公开证据拥有独立 ID，并且必须至少被一个节点、分支或贝叶斯更新步骤引用。校验器会重新计算全部内部节点，要求根节点概率等于该方向的 `fair_price`。当前网页暂不绘制树，后续展示层可以直接遍历这一结构，而无需改变历史 JSON。
 
 ## 本地预览
 

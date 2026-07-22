@@ -13,7 +13,7 @@
     "actions"
   ],
   "properties": {
-    "schema_version": { "const": "1.0" },
+    "schema_version": { "const": "1.1" },
     "brief_id": {
       "type": "string",
       "pattern": "^[a-zA-Z0-9][a-zA-Z0-9._-]{0,79}$"
@@ -42,7 +42,8 @@
         "price_gap",
         "confidence",
         "reason",
-        "evidence"
+        "evidence",
+        "probability_tree"
       ],
       "properties": {
         "market_id": { "type": "string", "minLength": 1, "maxLength": 160 },
@@ -63,19 +64,25 @@
           "type": "array",
           "minItems": 1,
           "items": { "$ref": "#/$defs/evidence" }
-        }
+        },
+        "probability_tree": { "$ref": "#/$defs/probabilityTree" }
       }
     },
     "evidence": {
       "type": "object",
       "additionalProperties": false,
       "required": [
+        "id",
         "source_url",
         "source_title",
         "source_content",
         "probability_impact"
       ],
       "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-zA-Z0-9][a-zA-Z0-9._-]{0,99}$"
+        },
         "source_url": {
           "type": "string",
           "pattern": "^https://[^\\s]+$"
@@ -84,6 +91,155 @@
         "source_content": { "type": "string", "minLength": 1, "maxLength": 1200 },
         "probability_impact": { "type": "string", "minLength": 1, "maxLength": 500 }
       }
+    },
+    "probabilityTree": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["root"],
+      "properties": {
+        "root": { "$ref": "#/$defs/probabilityNode" }
+      }
+    },
+    "probabilityNode": {
+      "oneOf": [
+        { "$ref": "#/$defs/estimateNode" },
+        { "$ref": "#/$defs/partitionNode" },
+        { "$ref": "#/$defs/bayesUpdateNode" },
+        { "$ref": "#/$defs/complementNode" }
+      ]
+    },
+    "estimateNode": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "type", "label", "description", "probability", "evidence_refs"],
+      "properties": {
+        "id": { "$ref": "#/$defs/treeId" },
+        "type": { "const": "estimate" },
+        "label": { "$ref": "#/$defs/nodeLabel" },
+        "description": { "$ref": "#/$defs/nodeDescription" },
+        "probability": { "$ref": "#/$defs/probability" },
+        "evidence_refs": { "$ref": "#/$defs/evidenceRefs" }
+      }
+    },
+    "partitionNode": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "type",
+        "label",
+        "description",
+        "probability",
+        "evidence_refs",
+        "branches"
+      ],
+      "properties": {
+        "id": { "$ref": "#/$defs/treeId" },
+        "type": { "const": "partition" },
+        "label": { "$ref": "#/$defs/nodeLabel" },
+        "description": { "$ref": "#/$defs/nodeDescription" },
+        "probability": { "$ref": "#/$defs/probability" },
+        "evidence_refs": { "$ref": "#/$defs/evidenceRefs" },
+        "branches": {
+          "type": "array",
+          "minItems": 2,
+          "items": { "$ref": "#/$defs/partitionBranch" }
+        }
+      }
+    },
+    "partitionBranch": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "label", "weight", "evidence_refs", "child"],
+      "properties": {
+        "id": { "$ref": "#/$defs/treeId" },
+        "label": { "$ref": "#/$defs/nodeLabel" },
+        "weight": { "$ref": "#/$defs/probability" },
+        "evidence_refs": { "$ref": "#/$defs/evidenceRefs" },
+        "child": { "$ref": "#/$defs/probabilityNode" }
+      }
+    },
+    "bayesUpdateNode": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "type",
+        "label",
+        "description",
+        "probability",
+        "evidence_refs",
+        "prior",
+        "updates"
+      ],
+      "properties": {
+        "id": { "$ref": "#/$defs/treeId" },
+        "type": { "const": "bayes_update" },
+        "label": { "$ref": "#/$defs/nodeLabel" },
+        "description": { "$ref": "#/$defs/nodeDescription" },
+        "probability": { "$ref": "#/$defs/probability" },
+        "evidence_refs": { "$ref": "#/$defs/evidenceRefs" },
+        "prior": { "$ref": "#/$defs/probabilityNode" },
+        "updates": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/bayesEvidenceUpdate" }
+        }
+      }
+    },
+    "bayesEvidenceUpdate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "label",
+        "likelihood_if_true",
+        "likelihood_if_false",
+        "posterior_probability",
+        "evidence_refs"
+      ],
+      "properties": {
+        "id": { "$ref": "#/$defs/treeId" },
+        "label": { "$ref": "#/$defs/nodeLabel" },
+        "likelihood_if_true": { "$ref": "#/$defs/probability" },
+        "likelihood_if_false": { "$ref": "#/$defs/probability" },
+        "posterior_probability": { "$ref": "#/$defs/probability" },
+        "evidence_refs": { "$ref": "#/$defs/evidenceRefs" }
+      }
+    },
+    "complementNode": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "type",
+        "label",
+        "description",
+        "probability",
+        "evidence_refs",
+        "child"
+      ],
+      "properties": {
+        "id": { "$ref": "#/$defs/treeId" },
+        "type": { "const": "complement" },
+        "label": { "$ref": "#/$defs/nodeLabel" },
+        "description": { "$ref": "#/$defs/nodeDescription" },
+        "probability": { "$ref": "#/$defs/probability" },
+        "evidence_refs": { "$ref": "#/$defs/evidenceRefs" },
+        "child": { "$ref": "#/$defs/probabilityNode" }
+      }
+    },
+    "treeId": {
+      "type": "string",
+      "pattern": "^[a-zA-Z0-9][a-zA-Z0-9._-]{0,99}$"
+    },
+    "nodeLabel": { "type": "string", "minLength": 1, "maxLength": 160 },
+    "nodeDescription": { "type": "string", "minLength": 1, "maxLength": 600 },
+    "probability": { "type": "number", "minimum": 0, "maximum": 1 },
+    "evidenceRefs": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/treeId" }
     }
   }
 }

@@ -47,7 +47,7 @@ function localTime(value) {
 }
 
 function validBrief(brief) {
-  return brief && brief.schema_version === "1.0" && brief.title === "预测市场研究信号" && Array.isArray(brief.actions);
+  return brief && brief.schema_version === "1.1" && brief.title === "预测市场研究信号" && Array.isArray(brief.actions);
 }
 
 function safeHttpsUrl(value, expectedHost = null) {
