@@ -1,0 +1,677 @@
+{
+  "schema_version": "1.1",
+  "brief_id": "20260722T082736Z",
+  "generated_at": "2026-07-22T10:52:00Z",
+  "as_of": "2026-07-22T10:10:00Z",
+  "title": "预测市场研究信号",
+  "actions": [
+    {
+      "market_id": "1469737",
+      "market_name": "Will Mojtaba Khamenei be head of state in Iran end of 2026?",
+      "action": "ADD",
+      "outcome": "NO",
+      "polymarket_url": "https://polymarket.com/event/iran-leader-end-of-2026?tid=1469737",
+      "link_verified_at": "2026-07-22T10:42:00Z",
+      "fair_price": 0.7425,
+      "current_price": 0.265,
+      "price_gap": 0.4775,
+      "confidence": "MEDIUM",
+      "reason": "近 5 个月零可信音像露面、缺席妻子与父亲两场葬礼、IRGC 以被指 PS 的照片代替视频回应，美方评估转为'几乎确定已死'；实际治理由 IRGC-SNSC 集体行使。按 de facto 标准他年底事实上掌权的概率仅约四分之一，NO 相对盘口有约 47.75 个百分点的原始优势（强信号）。",
+      "evidence": [
+        {
+          "id": "moj-ev-yalibnan",
+          "source_url": "https://yalibnan.com/2026/07/20/mojtaba-khamenei-dead-or-only-temporarily-so-expert-opinion/",
+          "source_title": "Mojtaba Khamenei: Dead… or only temporarily so? Expert Opinion",
+          "source_content": "专家评估：Mojtaba 约 5 个月零可信音像露面，仅有他人代读的书面声明；结论是他要么已死、要么处于功能上等同死亡的昏迷/失能状态，伊朗系统正在没有有效最高领袖的情况下被治理。美方评估已从 3 月'活着但受伤'转为 7 月'几乎确定已死'。",
+          "probability_impact": "强烈压低 YES：de facto 标准要求实际行使权力，死亡或失能则必然 No；是把'已死/失能'分支权重提至 0.50 的核心依据。"
+        },
+        {
+          "id": "moj-ev-iranintl-araghchi",
+          "source_url": "https://www.iranintl.com/en/202607199667",
+          "source_title": "Araghchi says Supreme Leader has final say on war or ceasefire",
+          "source_content": "外长 Araghchi 称国安会评估战争/停火但'最终决定权在最高领袖'，同时承认从未见过 Mojtaba 本人，'只有少数几个人见过他'。此言遭强硬派攻击。",
+          "probability_impact": "双向：体制仍以其名义授权（YES 残余支撑），但外长都见不到他，佐证其实际不行使治理；支撑'书面指令灰区'叶子给 0.45 而非更高。"
+        },
+        {
+          "id": "moj-ev-globalsecurity",
+          "source_url": "https://www.globalsecurity.org/military/ops/iran-war-oprep.htm",
+          "source_title": "Iran War 2026 — Day 144 Update — 21 July 2026",
+          "source_content": "7/20-21 窗口无 Mojtaba 名义的新公开声明；记录仍只有两条有争议的信息；议长 Ghalibaf 7/19 呼吁'服从最高领袖的命令'，被视为权威受争夺的信号。",
+          "probability_impact": "Ghalibaf 的'服从'呼吁反向印证其权威不被默认接受，支持集体/军方统治持续的判断。"
+        },
+        {
+          "id": "moj-ev-apnews",
+          "source_url": "https://apnews.com/article/iran-us-hormuz-strait-war-july-21-2026-1664f6a4dad005a99771b2ad15213585",
+          "source_title": "US military completes 11th night of strikes on Iran as attacks overshadow diplomacy",
+          "source_content": "6 月停火破裂后，美军已完成第 10-11 个连续夜晚对伊朗本土的打击（CENTCOM 声明），伊朗反击海湾国家与航运。",
+          "probability_impact": "战争持续大幅抬高'政权崩溃/死于战事/安排剧变'尾部概率，压缩其稳固掌权路径。"
+        },
+        {
+          "id": "moj-ev-iranintl-trump",
+          "source_url": "https://www.iranintl.com/en/202607132514",
+          "source_title": "Trump says Mojtaba Khamenei is 90% dead / IRGC 以 PS 图回应",
+          "source_content": "Trump 在 Fox 称'Khamenei 没了，儿子 90% 没了'；IRGC 以一张被指 PS 的照片回应而非视频。",
+          "probability_impact": "对抗性来源需打折，但 IRGC 无法拿出视频'活着证明'是独立的强负信号。"
+        },
+        {
+          "id": "moj-ev-gulfnews",
+          "source_url": "https://gulfnews.com/world/mena/inside-iran-s-40-year-power-shift-clerical-rule-fades-as-generals-take-control-1.500516956",
+          "source_title": "Inside Iran's 40-year power shift: Clerical rule fades as IRGC takes control",
+          "source_content": "深度报道（转引 NYT 信源）：受伤的 Mojtaba 隐居，IRGC 将军们主导战争、安全与谈判——'Mojtaba 像董事会主席一样治国，将军们才是董事'。",
+          "probability_impact": "即使他活着，de facto 主要治理权威在 IRGC 集体——按规则应为 No；是基准情形的结构性证据。"
+        },
+        {
+          "id": "moj-ev-telegraph",
+          "source_url": "https://www.telegraph.co.uk/world-news/2026/07/05/mojtaba-khamenei-misses-fathers-funeral/",
+          "source_title": "Mojtaba 缺席父亲国葬及妻子葬礼系列报道",
+          "source_content": "Mojtaba 缺席妻子葬礼（7/1）与 Ali Khamenei 国葬全程（7/3-9，下葬 Mashhad）；所谓'露面'视频被证伪（实为神职人员 Vaez）。",
+          "probability_impact": "连续缺席两场对其合法性最关键的仪式且无一可信露面，是重伤/死亡假设的有力旁证。"
+        }
+      ],
+      "probability_tree": {
+        "root": {
+          "id": "moj-no",
+          "type": "complement",
+          "label": "Mojtaba 年底不是伊朗元首（NO）",
+          "description": "NO 公允价值 = 1 - P(YES)。",
+          "probability": 0.7425,
+          "evidence_refs": [
+            "moj-ev-yalibnan"
+          ],
+          "child": {
+            "id": "moj-root",
+            "type": "partition",
+            "label": "Mojtaba 当前真实状态分解",
+            "description": "按 2026-12-31 12:00 PM ET 时 de facto 行使伊朗国家元首权力的三条互斥路径分解：已死亡或永久失能 / 活着但重伤受限 / 活着且功能基本正常。",
+            "probability": 0.2575,
+            "evidence_refs": [
+              "moj-ev-yalibnan",
+              "moj-ev-iranintl-araghchi"
+            ],
+            "branches": [
+              {
+                "id": "moj-br-dead",
+                "label": "已死亡或永久失能",
+                "weight": 0.5,
+                "evidence_refs": [
+                  "moj-ev-yalibnan",
+                  "moj-ev-iranintl-trump",
+                  "moj-ev-telegraph"
+                ],
+                "child": {
+                  "id": "moj-dead",
+                  "type": "partition",
+                  "label": "失能情形下的权力去向",
+                  "description": "专家会议另选新人、IRGC 接管、政权崩溃均使 Mojtaba 不为元首；仅继续掩盖+集体统治有极小误判 YES 风险。",
+                  "probability": 0.0075,
+                  "evidence_refs": [
+                    "moj-ev-yalibnan"
+                  ],
+                  "branches": [
+                    {
+                      "id": "moj-dead-1",
+                      "label": "专家会议另选新最高领袖",
+                      "weight": 0.45,
+                      "evidence_refs": [
+                        "moj-ev-globalsecurity"
+                      ],
+                      "child": {
+                        "id": "moj-dead-1e",
+                        "type": "estimate",
+                        "label": "他人掌权",
+                        "description": "他人 de facto 掌权则本市场 No。",
+                        "probability": 0.0,
+                        "evidence_refs": [
+                          "moj-ev-globalsecurity"
+                        ]
+                      }
+                    },
+                    {
+                      "id": "moj-dead-2",
+                      "label": "IRGC/军方公开接管",
+                      "weight": 0.2,
+                      "evidence_refs": [
+                        "moj-ev-gulfnews"
+                      ],
+                      "child": {
+                        "id": "moj-dead-2e",
+                        "type": "estimate",
+                        "label": "军方接管",
+                        "description": "军方强人掌权则 No。",
+                        "probability": 0.0,
+                        "evidence_refs": [
+                          "moj-ev-gulfnews"
+                        ]
+                      }
+                    },
+                    {
+                      "id": "moj-dead-3",
+                      "label": "政权崩溃/更迭",
+                      "weight": 0.2,
+                      "evidence_refs": [
+                        "moj-ev-apnews"
+                      ],
+                      "child": {
+                        "id": "moj-dead-3e",
+                        "type": "estimate",
+                        "label": "政权崩溃",
+                        "description": "战争升级下政权更迭则 No。",
+                        "probability": 0.0,
+                        "evidence_refs": [
+                          "moj-ev-apnews"
+                        ]
+                      }
+                    },
+                    {
+                      "id": "moj-dead-4",
+                      "label": "继续掩盖+集体统治到年底",
+                      "weight": 0.15,
+                      "evidence_refs": [
+                        "moj-ev-iranintl-trump"
+                      ],
+                      "child": {
+                        "id": "moj-dead-4e",
+                        "type": "estimate",
+                        "label": "掩盖误判风险",
+                        "description": "极小概率掩盖使结算误判 YES，给 0.05。",
+                        "probability": 0.05,
+                        "evidence_refs": [
+                          "moj-ev-iranintl-trump"
+                        ]
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "moj-br-injured",
+                "label": "活着但重伤/能力受限",
+                "weight": 0.3,
+                "evidence_refs": [
+                  "moj-ev-telegraph",
+                  "moj-ev-gulfnews"
+                ],
+                "child": {
+                  "id": "moj-injured",
+                  "type": "partition",
+                  "label": "重伤情形下的控制巩固",
+                  "description": "以书面声明治理、将军们实际决策的'董事会主席'模式。",
+                  "probability": 0.4525,
+                  "evidence_refs": [
+                    "moj-ev-gulfnews"
+                  ],
+                  "branches": [
+                    {
+                      "id": "moj-inj-1",
+                      "label": "恢复并在 12/31 前巩固实质控制",
+                      "weight": 0.25,
+                      "evidence_refs": [
+                        "moj-ev-iranintl-araghchi"
+                      ],
+                      "child": {
+                        "id": "moj-inj-1e",
+                        "type": "estimate",
+                        "label": "巩固控制",
+                        "description": "恢复可证明的 de facto 控制则 YES。",
+                        "probability": 1.0,
+                        "evidence_refs": [
+                          "moj-ev-iranintl-araghchi"
+                        ]
+                      }
+                    },
+                    {
+                      "id": "moj-inj-2",
+                      "label": "名义领袖+书面指令灰区",
+                      "weight": 0.45,
+                      "evidence_refs": [
+                        "moj-ev-iranintl-araghchi"
+                      ],
+                      "child": {
+                        "id": "moj-inj-2e",
+                        "type": "estimate",
+                        "label": "指令灰区",
+                        "description": "'发布有约束力的国家指令'指标可能被认定 YES，但主要治理在 IRGC/SNSC，给 0.45。",
+                        "probability": 0.45,
+                        "evidence_refs": [
+                          "moj-ev-iranintl-araghchi"
+                        ]
+                      }
+                    },
+                    {
+                      "id": "moj-inj-3",
+                      "label": "被正式替换或死亡",
+                      "weight": 0.15,
+                      "evidence_refs": [
+                        "moj-ev-yalibnan"
+                      ],
+                      "child": {
+                        "id": "moj-inj-3e",
+                        "type": "estimate",
+                        "label": "被替换",
+                        "description": "则 No。",
+                        "probability": 0.0,
+                        "evidence_refs": [
+                          "moj-ev-yalibnan"
+                        ]
+                      }
+                    },
+                    {
+                      "id": "moj-inj-4",
+                      "label": "政权崩溃",
+                      "weight": 0.15,
+                      "evidence_refs": [
+                        "moj-ev-apnews"
+                      ],
+                      "child": {
+                        "id": "moj-inj-4e",
+                        "type": "estimate",
+                        "label": "政权崩溃",
+                        "description": "则 No。",
+                        "probability": 0.0,
+                        "evidence_refs": [
+                          "moj-ev-apnews"
+                        ]
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "moj-br-alive",
+                "label": "活着且功能基本正常",
+                "weight": 0.2,
+                "evidence_refs": [
+                  "moj-ev-iranintl-araghchi"
+                ],
+                "child": {
+                  "id": "moj-alive",
+                  "type": "partition",
+                  "label": "正常情形下的权力巩固",
+                  "description": "以其名义的指令持续发布且未见体制内公开否认其权威。",
+                  "probability": 0.59,
+                  "evidence_refs": [
+                    "moj-ev-iranintl-araghchi"
+                  ],
+                  "branches": [
+                    {
+                      "id": "moj-ali-1",
+                      "label": "巩固可证明的 de facto 控制",
+                      "weight": 0.55,
+                      "evidence_refs": [
+                        "moj-ev-iranintl-araghchi"
+                      ],
+                      "child": {
+                        "id": "moj-ali-1e",
+                        "type": "estimate",
+                        "label": "巩固",
+                        "description": "则 YES。",
+                        "probability": 1.0,
+                        "evidence_refs": [
+                          "moj-ev-iranintl-araghchi"
+                        ]
+                      }
+                    },
+                    {
+                      "id": "moj-ali-2",
+                      "label": "被集体安排架空",
+                      "weight": 0.2,
+                      "evidence_refs": [
+                        "moj-ev-gulfnews"
+                      ],
+                      "child": {
+                        "id": "moj-ali-2e",
+                        "type": "estimate",
+                        "label": "傀儡化",
+                        "description": "书面指令傀儡化，给 0.20。",
+                        "probability": 0.2,
+                        "evidence_refs": [
+                          "moj-ev-gulfnews"
+                        ]
+                      }
+                    },
+                    {
+                      "id": "moj-ali-3",
+                      "label": "战争中死亡/政权垮台",
+                      "weight": 0.25,
+                      "evidence_refs": [
+                        "moj-ev-apnews"
+                      ],
+                      "child": {
+                        "id": "moj-ali-3e",
+                        "type": "estimate",
+                        "label": "死亡或垮台",
+                        "description": "则 No。",
+                        "probability": 0.0,
+                        "evidence_refs": [
+                          "moj-ev-apnews"
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "market_id": "2068883",
+      "market_name": "Will the Bank of Russia make no change to the key rate after the July Meeting?",
+      "action": "BUY",
+      "outcome": "YES",
+      "polymarket_url": "https://polymarket.com/event/bank-of-russia-decision-in-july?tid=2068883",
+      "link_verified_at": "2026-07-22T10:42:00Z",
+      "fair_price": 0.74,
+      "current_price": 0.44,
+      "price_gap": 0.3,
+      "confidence": "MEDIUM",
+      "reason": "TASS 对 22 名市场参与者的调查显示 18 人预期 7 月 24 日维持 14.25%；6 月 CPI 环比跳升至 0.87%、年通胀回升至 6.02%，炼厂遇袭引发燃料危机推高 7 月周通胀；央行 6 月声明与 7 月纪要均偏鹰。hold 概率约 0.74，相对盘口有约 30 个百分点的原始优势，7/24 结算、资金锁定仅 2 天。",
+      "evidence": [
+        {
+          "id": "bor-ev-tass",
+          "source_url": "https://news.mail.ru/economics/71717099/",
+          "source_title": "Консенсус-прогноз: ЦБ может сохранить ключевую ставку на уровне 14,25%（TASS 调查，18/22）",
+          "source_content": "TASS 对 22 名市场参与者的调查：18 人预期 7 月 24 日维持 14.25% 不变，理由为燃料涨价推升通胀、通胀预期上行、财政与货币供应偏松；其余少数预期小幅降息至 14%。多家俄媒独立转载同一数据。",
+          "probability_impact": "分析师共识强烈偏向 hold（约 82%），是最直接的先验，支撑 hold 分支 0.74。"
+        },
+        {
+          "id": "bor-ev-cbr-keypr",
+          "source_url": "https://www.cbr.ru/eng/press/keypr/",
+          "source_title": "Bank of Russia cuts the key rate by 25 bp to 14.25% p.a.",
+          "source_content": "6 月 19 日董事会降息 25bp 至 14.25%（连续第 9 次降息），声明强调财政将比基准情形更宽松、信贷加速，'可能要求比 4 月基准更高的利率路径'，后续降息取决于通胀放缓的可持续性。",
+          "probability_impact": "确立基准利率 14.25%；前瞻指引明显偏谨慎，为 7 月暂停降息埋下伏笔。"
+        },
+        {
+          "id": "bor-ev-cbr-minutes",
+          "source_url": "https://www.cbr.ru/eng/press/event/?id=32679",
+          "source_title": "Summary of the Key Rate Discussion released",
+          "source_content": "6 月会议讨论纪要（7/1 发布）：与会者承认 4-5 月通胀回落，但一致认为 proinflationary 风险上升（财政脉冲+燃料市场减产）；部分理事认为断定基础通胀持续回落'为时过早'。",
+          "probability_impact": "董事会内部鹰派顾虑上升，降低 7 月连续降息意愿。"
+        },
+        {
+          "id": "bor-ev-inflation",
+          "source_url": "https://interfax.com/newsroom/top-stories/",
+          "source_title": "Inflation in Russia accelerates to 0.87% in June, annual 6.02%",
+          "source_content": "6 月 CPI 环比 0.87%（4 月 0.14%、5 月 0.17% 后大幅跳升），年通胀由 5.31% 回升至 6.02%；7 月 7-13 日周通胀 0.17%、汽油单周 +2.3%（炼厂遇袭引发燃料危机）。",
+          "probability_impact": "通胀重新加速，直接削弱 7 月降息空间，是 hold 判断的最强数据支撑。"
+        },
+        {
+          "id": "bor-ev-riamo",
+          "source_url": "https://riamo.ru/articles/aktsenty/chto-budet-s-kljuchevoj-stavkoj-na-zasedanii-tsb-24-ijulja-prognozy-ekspertov/",
+          "source_title": "Что будет с ключевой ставкой на заседании ЦБ 24 июля: прогнозы экспертов",
+          "source_content": "多数专家认为'维持 14.25%'最可能，共识在'维持 vs 降 25bp'之间，加息被普遍认为不可能；谨慎主因是燃料市场推升通胀。",
+          "probability_impact": "确认加息分支可忽略，主要竞争情景是 hold 与 cut25。"
+        },
+        {
+          "id": "bor-ev-rb",
+          "source_url": "https://rb.ru/news/ekonomika-prosit-snizheniya-no-ceny-ne-razreshayut-eksperty-ocenili-veroyatnost-snizheniya-klyuchevoj-stavki-24-iyulya/",
+          "source_title": "«Экономика просит снижения, но цены не разрешают»: эксперты о вероятности снижения ставки 24 июля",
+          "source_content": "观点分裂：Trebina 预期暂停于 14.25% 并称'四分之三分析师持相同预期'；Rastorguev 认为维持最可能、小概率降至 14%；Ermilova 预期降至 13%；Glushkin 引普京'降息是自然过程'作为宽松论据。",
+          "probability_impact": "确认 hold 为主流，政治压力构成主要反向风险——支撑 cut25 分支保留 0.20 权重。"
+        }
+      ],
+      "probability_tree": {
+        "root": {
+          "id": "bor-root",
+          "type": "partition",
+          "label": "俄央行 7/24 决议方向分解",
+          "description": "7 月 24 日决议相对现行 14.25% 的变动方向互斥且穷尽：维持 / 降 25bp / 降 50bp+ / 加息。",
+          "probability": 0.74,
+          "evidence_refs": [
+            "bor-ev-tass",
+            "bor-ev-cbr-keypr"
+          ],
+          "branches": [
+            {
+              "id": "bor-br-hold",
+              "label": "维持 14.25% 不变",
+              "weight": 0.74,
+              "evidence_refs": [
+                "bor-ev-tass",
+                "bor-ev-inflation",
+                "bor-ev-cbr-minutes"
+              ],
+              "child": {
+                "id": "bor-hold-e",
+                "type": "estimate",
+                "label": "维持利率",
+                "description": "TASS 对 22 名市场参与者调查 18 人预期维持；6 月 CPI 环比跳升至 0.87%、7 月燃料危机推高周通胀；央行纪要强调 proinflationary 风险上升。仅普京等政治压力保留象征性降 25bp 风险。",
+                "probability": 1.0,
+                "evidence_refs": [
+                  "bor-ev-tass",
+                  "bor-ev-inflation"
+                ]
+              }
+            },
+            {
+              "id": "bor-br-cut25",
+              "label": "象征性降息 25bp",
+              "weight": 0.2,
+              "evidence_refs": [
+                "bor-ev-rb",
+                "bor-ev-riamo"
+              ],
+              "child": {
+                "id": "bor-cut25-e",
+                "type": "estimate",
+                "label": "降 25bp",
+                "description": "普京称降息是'自然过程'、杜马议员公开施压，政治动力存在，则 No。",
+                "probability": 0.0,
+                "evidence_refs": [
+                  "bor-ev-rb"
+                ]
+              }
+            },
+            {
+              "id": "bor-br-cut50",
+              "label": "降息 50bp 或以上",
+              "weight": 0.03,
+              "evidence_refs": [
+                "bor-ev-riamo"
+              ],
+              "child": {
+                "id": "bor-cut50-e",
+                "type": "estimate",
+                "label": "大幅降息",
+                "description": "通胀重新加速下极小概率，则 No。",
+                "probability": 0.0,
+                "evidence_refs": [
+                  "bor-ev-riamo"
+                ]
+              }
+            },
+            {
+              "id": "bor-br-hike",
+              "label": "加息",
+              "weight": 0.03,
+              "evidence_refs": [
+                "bor-ev-riamo"
+              ],
+              "child": {
+                "id": "bor-hike-e",
+                "type": "estimate",
+                "label": "加息",
+                "description": "多数专家认为不可能，但燃料通胀失控尾部保留小概率，则 No。",
+                "probability": 0.0,
+                "evidence_refs": [
+                  "bor-ev-riamo"
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "market_id": "599305",
+      "market_name": "Will Abdul El-Sayed win the 2026 Michigan Democratic Primary?",
+      "action": "BUY",
+      "outcome": "NO",
+      "polymarket_url": "https://polymarket.com/event/michigan-democratic-senate-primary-winner?tid=599305",
+      "link_verified_at": "2026-07-22T10:42:00Z",
+      "fair_price": 0.427,
+      "current_price": 0.22,
+      "price_gap": 0.207,
+      "confidence": "MEDIUM",
+      "reason": "无关联独立民调（Glengariff：Stevens 48-41；Tavern：42-41）显示两人实质平局、10-31% 选民在最后两周仍可移动；El-Sayed 虽有进步派背书合流与动能，但面临约 17:1 的广告资金劣势。合理胜率约 57%，显著低于盘口隐含的 79%，NO 侧有约 20.7 个百分点的原始优势，8/4 投票。",
+      "evidence": [
+        {
+          "id": "els-ev-wiki",
+          "source_url": "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_Michigan",
+          "source_title": "2026 United States Senate election in Michigan — Democratic primary polling",
+          "source_content": "McMorrow 7/5 退选后四人 head-to-head 民调：Tulchin 7/13-15（El-Sayed 56-40，阵营内部民调）、Data for Progress 7/10-14（54-41，亲 El-Sayed 团体赞助）、Glengariff 7/8-11（Stevens 48-41）、Tavern 7/6-8（41-42）。聚合：DDHQ +6.6、FiftyPlusOne +6.9、270toWin +1.6、RCP Stevens +4.0。",
+          "probability_impact": "领先幅度结论高度依赖民调赞助方：独立口径平局至 Stevens 小优，聚合口径 El-Sayed 小优——是三分支结构的基础。"
+        },
+        {
+          "id": "els-ev-detroitnews",
+          "source_url": "https://www.detroitnews.com/story/news/politics/2026/07/14/michigan-senate-race-poll-democrats-abdul-el-sayed-haley-stevens-edge/90907700007/",
+          "source_title": "Stevens gains edge in Dems' Senate race that remains 'wide open,' poll finds",
+          "source_content": "Glengariff 7/8-11 电话民调（500 LV，±4.4%）：Stevens 48 vs El-Sayed 41，但'确定支持'者 34.1-33.7 完全持平；民调专家称 31% 选票仍可移动、双方都未锁定胜局。",
+          "probability_impact": "最可靠的独立民调显示表面 Stevens +7、实质死平，未决选票体量巨大——把独立口径分支压向 0.50。"
+        },
+        {
+          "id": "els-ev-tavern",
+          "source_url": "https://michiganadvance.com/2026/07/08/new-poll-shows-el-sayed-stevens-statistically-tied-in-michigans-democratic-u-s-senate-primary/",
+          "source_title": "New poll shows El-Sayed, Stevens statistically tied in Michigan's Democratic U.S. Senate primary",
+          "source_content": "Tavern Research 7/6-8 在线民调（2,211 LV，±2.5%）：两人对决 Stevens 42-41，18% 未定；若 McMorrow 在场则 El-Sayed 41-38-5。",
+          "probability_impact": "大样本独立民调确认统计平局，未决选民 18% 是最大变量。"
+        },
+        {
+          "id": "els-ev-semafor",
+          "source_url": "https://www.semafor.com/article/07/06/2026/progressives-see-polling-candidate-momentum-in-michigan",
+          "source_title": "Progressives see polling, candidate momentum in Michigan",
+          "source_content": "McMorrow 7/5 退选，初选收窄为 El-Sayed vs Stevens 两人对决；亲 El-Sayed 超级 PAC 内部民调显示 54-34 并赢下多数 McMorrow 支持者（阵营内部数据需大幅打折）。",
+          "probability_impact": "确认两人对决格局与进步派整合趋势，支撑聚合口径分支。"
+        },
+        {
+          "id": "els-ev-bridge",
+          "source_url": "https://bridgemi.com/michigan-government/outside-spending-floods-michigans-us-senate-race-most-for-haley-stevens/",
+          "source_title": "Outside spending floods Michigan's US Senate race — most for Haley Stevens",
+          "source_content": "外部支出超 $41M：AIPAC 系 UDP 已花 $15M（$9.3M 挺 Stevens、$5.7M 反 El-Sayed），A Stronger Michigan 另投 $12M 挺 Stevens，挺 El-Sayed 外部资金仅 $2.3M；民主党初选广告 $46.1M 中 74% 挺 Stevens。",
+          "probability_impact": "Stevens 的压倒性空中优势是其收编未决选民的最大筹码，是基本面分支 0.42 与资金尾部下修的核心依据。"
+        },
+        {
+          "id": "els-ev-warren",
+          "source_url": "https://www.ms.now/news/warren-backs-el-sayed-michigan-democratic-primary",
+          "source_title": "Warren backs El-Sayed in competitive Michigan Democratic primary",
+          "source_content": "Warren（初选早期曾背书 McMorrow）改背书 El-Sayed，并将在选前最后一个周末与其在密歇根两站造势；此前一周 Sanders 与 AOC 已为 El-Sayed 巡回助选。",
+          "probability_impact": "进步派重量级背书在选前两周完成向 El-Sayed 的合流，强化动能叙事，是贝叶斯上调的主因。"
+        },
+        {
+          "id": "els-ev-michiganadvance",
+          "source_url": "https://michiganadvance.com/2026/07/17/your-weekly-michigan-political-brief-41/",
+          "source_title": "Your Weekly Michigan Political Brief (week of July 13, 2026)",
+          "source_content": "现任参议员 Peters 背书 Stevens，带动 Clyburn、国会黑人党团 PAC、钢铁工人联合会等跟进；El-Sayed 同周获 Ilhan Omar、Lateefah Simon、Jamaal Bowman 背书。",
+          "probability_impact": "建制派背书集中兑现给 Stevens，与进步派背书形成对冲，背书战大体打平、略偏 Stevens。"
+        }
+      ],
+      "probability_tree": {
+        "root": {
+          "id": "els-no",
+          "type": "complement",
+          "label": "El-Sayed 未赢初选（NO）",
+          "description": "NO 公允价值 = 1 - P(YES)。",
+          "probability": 0.427,
+          "evidence_refs": [
+            "els-ev-detroitnews"
+          ],
+          "child": {
+            "id": "els-root",
+            "type": "bayes_update",
+            "label": "选前背书合流与资金尾部更新",
+            "description": "在民调口径先验 0.543 上，用 7/20 Warren 背书合流与进步派巡回助选（利好）对 UDP/AIPAC 最后一周 $4.6M 负面广告投放（利空）做一次净更新，得到 0.573。",
+            "probability": 0.573,
+            "evidence_refs": [
+              "els-ev-warren",
+              "els-ev-bridge"
+            ],
+            "prior": {
+              "id": "els-prior",
+              "type": "partition",
+              "label": "民调证据口径分解",
+              "description": "对民调证据的解读存在系统性分歧：无关联独立民调显示胶着/Stevens 小幅领先，聚合均值与亲 El-Sayed 阵营民调显示其领先，按证据类别分三支。",
+              "probability": 0.543,
+              "evidence_refs": [
+                "els-ev-wiki",
+                "els-ev-detroitnews",
+                "els-ev-tavern"
+              ],
+              "branches": [
+                {
+                  "id": "els-br-ind",
+                  "label": "无关联独立民调口径",
+                  "weight": 0.4,
+                  "evidence_refs": [
+                    "els-ev-detroitnews",
+                    "els-ev-tavern"
+                  ],
+                  "child": {
+                    "id": "els-ind-e",
+                    "type": "estimate",
+                    "label": "实质平局",
+                    "description": "Glengariff 7/8-11（Stevens 48-41）与 Tavern 7/6-8（42-41）显示两人实质平局、31% 选民仍可移动，胜率约五五开。",
+                    "probability": 0.5,
+                    "evidence_refs": [
+                      "els-ev-detroitnews"
+                    ]
+                  }
+                },
+                {
+                  "id": "els-br-agg",
+                  "label": "聚合与阵营民调口径",
+                  "weight": 0.35,
+                  "evidence_refs": [
+                    "els-ev-wiki",
+                    "els-ev-semafor"
+                  ],
+                  "child": {
+                    "id": "els-agg-e",
+                    "type": "estimate",
+                    "label": "El-Sayed 占优",
+                    "description": "聚合口径（DDHQ +6.6、FiftyPlusOne +6.9、270toWin +1.6）与上升趋势支持 El-Sayed 明显占优。",
+                    "probability": 0.68,
+                    "evidence_refs": [
+                      "els-ev-wiki"
+                    ]
+                  }
+                },
+                {
+                  "id": "els-br-fund",
+                  "label": "基本面与资金口径",
+                  "weight": 0.25,
+                  "evidence_refs": [
+                    "els-ev-bridge"
+                  ],
+                  "child": {
+                    "id": "els-fund-e",
+                    "type": "estimate",
+                    "label": "资金碾压",
+                    "description": "Stevens 享有约 17:1 广告投放优势（外部支出 $41M+ 中 74% 挺 Stevens），建制背书集中兑现，可能收走大部分未决选民。",
+                    "probability": 0.42,
+                    "evidence_refs": [
+                      "els-ev-bridge"
+                    ]
+                  }
+                }
+              ]
+            },
+            "updates": [
+              {
+                "id": "els-upd-1",
+                "label": "进步派背书合流 vs 资金负面攻击的净效应",
+                "likelihood_if_true": 1.0,
+                "likelihood_if_false": 0.885435402751842,
+                "posterior_probability": 0.573,
+                "evidence_refs": [
+                  "els-ev-warren",
+                  "els-ev-michiganadvance"
+                ]
+              }
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

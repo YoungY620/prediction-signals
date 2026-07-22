@@ -1,4 +1,11 @@
 {
   "schema_version": "1.0",
-  "briefs": []
+  "briefs": [
+    {
+      "brief_id": "20260722T082736Z",
+      "generated_at": "2026-07-22T10:52:00Z",
+      "title": "预测市场研究信号",
+      "file": "20260722T082736Z.json"
+    }
+  ]
 }
